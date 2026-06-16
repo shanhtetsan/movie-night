@@ -14,11 +14,21 @@ const initialMovies = [
 export default function App() {
 
   const [movies, setMovies] = useState(initialMovies)
+
+  function toggleWatched(id) {
+  setMovies(movies.map(movie => {
+    if (movie.id === id) {
+      return { ...movie, watched: !movie.watched }
+    } else {
+      return movie
+    }
+  }))
+}
   return (
     <div>
 <h1>Movie Night</h1>
 {movies.map(movie => (
-  <MovieCard key={movie.id} movie={movie} />
+  <MovieCard key={movie.id} movie={movie} onToggle={toggleWatched} />
 ))}
     </div>
   )
