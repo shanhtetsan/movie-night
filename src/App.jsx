@@ -24,9 +24,15 @@ export default function App() {
     }
   }))
 }
+
+const total = movies.length
+const watched = movies.filter(movie => movie.watched).length
+const unwatched = movies.filter(movie => !movie.watched).length
+
   return (
     <div>
 <h1>Movie Night</h1>
+<p>Total: {total} | Watched: {watched} | Not watched yet: {unwatched}</p>
 {movies.map(movie => (
   <MovieCard key={movie.id} movie={movie} onToggle={toggleWatched} />
 ))}
